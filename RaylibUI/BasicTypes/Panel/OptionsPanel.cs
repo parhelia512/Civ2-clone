@@ -143,7 +143,6 @@ public class OptionsPanel : BaseControl
         {
             var entry = new OptionControl(_controller, this, _texts[i], i,
                     CheckboxStates?[i] ?? false, i < (_icons?.Length ?? 0) ? [_icons[i]] : images);
-            entry.Selected = SetSelectedOption;
             _optionControls.Add(entry);
         }
 
@@ -172,6 +171,7 @@ public class OptionsPanel : BaseControl
         var optionAction = _isCheckbox ? (Action<OptionControl>)ToggleCheckBox : SetSelectedOption;
         foreach (var option in _optionControls)
         {
+            option.Selected = optionAction;
             Controls.Add(option);
         }
 
